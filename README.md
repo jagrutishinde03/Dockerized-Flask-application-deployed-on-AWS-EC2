@@ -55,7 +55,7 @@ This project demonstrates the deployment of a Dockerized Flask-based User Manage
 
 2. **SSH into EC2 Instance**
    ```bash
-   ssh -i /path/to/your-key.pem ubuntu@<EC2-Public-IP>
+   ssh -i /path/to/your-key.pem ec2-user@<EC2-Public-IP>
    ```
    Replace `/path/to/your-key.pem` with the path to your private key file and `<EC2-Public-IP>` with your instance's public IP address.
 
