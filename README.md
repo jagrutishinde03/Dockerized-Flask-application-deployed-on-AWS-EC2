@@ -42,8 +42,11 @@ This project demonstrates the deployment of a Dockerized Flask-based User Manage
    sudo systemctl start docker
    sudo systemctl enable docker
    ```
-
-3. **Verify Docker Installation**
+3. **Check Docker Service Status**
+   ```bash
+   sudo systemctl status docker
+   ```
+4. **Verify Docker Installation**
    ```bash
    docker --version
    ```
