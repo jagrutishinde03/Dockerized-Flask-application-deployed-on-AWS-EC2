@@ -1,109 +1,113 @@
+#### Dockerized Flask Application Deployment on AWS EC2
 
-# Flask User Management System
+#### Overview
+This project demonstrates the deployment of a Dockerized Flask-based User Management application on AWS EC2. It includes instructions for setting up the EC2 instance, installing Docker, pulling the Docker image, and running the application.
 
-## Overview
+#### Technologies Used
+- Flask
+- Docker
+- AWS EC2
 
-The Flask User Management System is a web-based application designed to manage user accounts with ease. Built with the Flask framework, this system provides a comprehensive suite of features for user authentication, user data management, and an administrative portal. The system leverages Docker for deployment, ensuring that the application is easy to set up and deploy in various environments.
+#### Prerequisites
+1. AWS Account with access to EC2.
+2. Basic knowledge of AWS services, Docker, and command line interface.
 
-## Key Features
+#### Steps to Deploy on AWS EC2
 
-### User Authentication
-- **Secure Login:** Users can log in using their email and password.
-- **Session Management:** Secure session handling to ensure user data is protected during their interaction with the system.
+#### 1. Launch an EC2 Instance
 
-### Admin Portal
-- **User Management:** Administrators can add, edit, and delete user accounts.
-- **User Listing:** View a comprehensive list of all registered users, with options to edit or remove accounts.
-- **Flash Messages:** Informative flash messages are displayed to notify administrators of actions such as successful user addition, updates, and deletions.
+1. **Sign in to AWS Console**
+   - Go to [AWS Management Console](https://aws.amazon.com/console/) and sign in.
 
-### User Management
-- **Add New Users:** Easily add new users by providing their name and email.
-- **Edit User Details:** Update user information such as name and email.
-- **Delete Users:** Remove users from the system with a single click.
+2. **Launch Instance**
+   - Navigate to EC2 service.
+   - Click on "Launch Instance" to create a new instance.
 
-### Technology Stack
+3. **Choose an Amazon Machine Image (AMI)**
+   - Select an Ubuntu or Amazon Linux AMI.
 
-### Backend
-- **Flask:** A lightweight WSGI web application framework in Python, perfect for building web applications with simplicity and flexibility.
-- **Werkzeug:** A comprehensive WSGI web application library used by Flask for request and response handling.
+4. **Choose Instance Type**
+   - Select an instance type based on your application requirements.
 
-### Frontend
-- **HTML/CSS:** The structure and styling of the application are managed using standard HTML and CSS.
-- **Bootstrap:** A popular CSS framework that ensures the application is responsive and visually appealing.
+5. **Configure Instance Details**
+   - Configure instance details such as network, subnet, and IAM role.
 
-### Deployment
-- **Docker:** The application is containerized using Docker, allowing for consistent and isolated environments across different stages of development and production.
+6. **Add Storage**
+   - Add storage as per your application's storage requirements.
 
-## Installation and Setup
+7. **Add Tags (Optional)**
+   - Add tags for better identification.
 
-### Requirements
-- **Docker:** Ensure Docker is installed on your machine. Follow the [official Docker installation guide](https://docs.docker.com/get-docker/) if needed.
-- **Docker Compose:** Optional but recommended for advanced setups. Install Docker Compose from [here](https://docs.docker.com/compose/install/).
+8. **Configure Security Group**
+   - Create or select an existing security group.
+   - Add a rule to allow inbound traffic on port `80` (HTTP) or your configured port.
 
-### Steps to Run the Application
+9. **Review and Launch**
+   - Review the instance details and click "Launch".
+   - Select or create a new key pair to connect to your instance securely.
 
-1. **Clone the Repository:**
+10. **Access the Instance**
+    - Once launched, note down the public IP address or DNS name of your EC2 instance.
 
-   ```sh
-   git clone https://github.com/yourusername/flask-user-management-docker.git
-   cd flask-user-management-docker
+#### 2. Connect to EC2 Instance via SSH
+
+1. **Open Terminal (or Command Prompt)**
+
+2. **SSH into EC2 Instance**
+   ```bash
+   ssh -i /path/to/your-key.pem ubuntu@<EC2-Public-IP>
+   ```
+   Replace `/path/to/your-key.pem` with the path to your private key file and `<EC2-Public-IP>` with your instance's public IP address.
+
+3. **Update the System**
+   ```bash
+   sudo apt update
+   sudo apt upgrade -y
    ```
 
-2. **Build the Docker Image:**
+#### 3. Install Docker on EC2 Instance
 
-   ```sh
-   docker build -t flask-app .
+1. **Install Docker**
+   ```bash
+   sudo yum install docker
    ```
 
-3. **Run the Docker Container:**
-
-   ```sh
-   docker run -d -p 5000:5000 --name flask-app-container flask-app
+2. **Start Docker Service**
+   ```bash
+   sudo systemctl start docker
+   sudo systemctl enable docker
    ```
 
-4. **Access the Application:**
+3. **Verify Docker Installation**
+   ```bash
+   docker --version
+   ```
 
-   Open your web browser and navigate to `http://localhost:5000`.
+#### 4. Pull and Run Docker Image
 
+1. **Pull Docker Image**
+   ```bash
+   docker pull jagruti03shinde/user-management-application:01
+   ```
 
-## Docker Compose
+2. **Run Docker Container**
+   ```bash
+   docker run -d -p 80:5000 jagruti03shinde/user-management-application:01
+   ```
 
-For advanced setups using Docker Compose, create a `docker-compose.yml` file in the project root:
+3. **Access the Application**
+   - Open a web browser and navigate to:
+     ```
+     http://<EC2-Public-IP>
+     ```
+     Replace `<EC2-Public-IP>` with your actual EC2 instance's public IP address.
 
-```yaml
-version: '3'
-services:
-  web:
-    build: .
-    ports:
-      - "5000:5000"
-    volumes:
-      - .:/app
-    environment:
-      - FLASK_ENV=development
-```
+#### Additional Notes
+- Ensure your security group allows inbound traffic on port `80` or your configured port.
+- Customize the application settings and environment variables as needed.
 
-Then run:
+#### License
+Include license information if applicable.
 
-```sh
-docker-compose up
-```
-
-## Docker Hub
-
-The Docker image for this application is available on Docker Hub. You can pull it using the following command:
-
-```sh
-docker pull jagruti03shinde/user-management-application
-```
-
-## Admin Credentials
-
-Use the following credentials to log in to the admin portal:
-
-- **Email:** `jagruti03shinde@gmail.com`
-- **Password:** `JagrutiShinde03`
-
-## Contact
-
-For any inquiries, please contact [jagruti03shinde@gmail.com](mailto:jagruti03shinde@gmail.com).
+#### Author
+Your name or organization.
