@@ -74,5 +74,12 @@ This project demonstrates the deployment of a Dockerized Flask-based User Manage
 - Ensure your security group allows inbound traffic on port `80` or your configured port.
 - Customize the application settings and environment variables as needed.
 
+## Admin Credentials
+
+Use the following credentials to log in to the admin portal:
+
+- **Email:** `admin@gmail.com`
+- **Password:** `admin@123`
+
 #### Author
 Jagruti D. Shinde
