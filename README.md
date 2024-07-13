@@ -55,12 +55,12 @@ This project demonstrates the deployment of a Dockerized Flask-based User Manage
 
 1. **Pull Docker Image**
    ```bash
-   docker pull jagruti03shinde/user-management-application:01
+   sudo docker pull jagruti03shinde/user-management-application:01
    ```
 
 2. **Run Docker Container**
    ```bash
-   docker run -d -p 80:5000 jagruti03shinde/user-management-application:01
+   sudo docker run -d -p 80:5000 jagruti03shinde/user-management-application:01
    ```
 
 3. **Access the Application**
